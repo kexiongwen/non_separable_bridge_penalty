@@ -39,8 +39,8 @@ while (norm(beta-beta_previous)>1e-3) && (iteration<20)
             beta(j,:)=0;
         else
             while abs(beta_old-beta_new)>1e-4 && (k<=20) && (beta_new>=0)
-                beta_new=abs(Z(j))-C1/XTX(j,j)/(beta_old+C2*beta_old.^(1-0.5.^s));
                 beta_old=beta_new;
+                beta_new=abs(Z(j))-C1/XTX(j,j)/(beta_old+C2*beta_old.^(1-0.5.^s));
                 k=k+1;
             end
 
