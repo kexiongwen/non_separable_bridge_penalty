@@ -20,7 +20,7 @@ where $X$ is a $N \times P$ matrix of covariates, $\beta \in \mathbb{R}^{P}$ is 
 
 ## Algorithm
 
-![WechatIMG76](/Users/kxw/Desktop/WechatIMG76.png)
+![Uploading WechatIMG76.png…]()
 
 where $\epsilon$ is some suitable small error tolerance, $T$ is the terminal number for the fixed point iteration,  $b$ is the value of the hyper-parameter chosen by the user,  $\boldsymbol{\beta}_{-j}^{i}=(\beta_{1}^{(i+1)},...,\beta_{j-1}^{(i+1)},\beta_{j+1}^{(i)},...,\beta_{p}^{(i)})$  and
 
