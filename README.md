@@ -22,9 +22,9 @@ where $X$ is a $N \times P$ matrix of covariates, $\beta \in \mathbb{R}^{P}$ is 
 
 ![WechatIMG76](https://user-images.githubusercontent.com/128662706/230061449-f5dcf61a-b224-49b0-a263-bb13bab6b893.png)
 
-where $\epsilon$ is some suitable small error tolerance, $T$ is the terminal number for the fixed point iteration,  $b$ is the value of the hyper-parameter chosen by the user,  $\boldsymbol{\beta}_{-j}^{i}=(\beta_{1}^{(i+1)},...,\beta_{j-1}^{(i+1)},\beta_{j+1}^{(i)},...,\beta_{p}^{(i)})$  and
+where $\epsilon$ is some suitable small error tolerance, $T$ is the terminal number for the fixed point iteration,  $b$ is the value of the hyper-parameter chosen by the user,   $\beta_{-j}^{i}=(\beta_{1}^{(i+1)},...,\beta_{j-1}^{(i+1)},\beta_{j+1}^{(i)},...,\beta_{p}^{(i)})$  and
 
 
 $$
-u(\beta_{-j})=2\left\{\frac{C_{1}(X_{j}^{T}X_{j})^{-1}}{2C_{2}+2[(X_{j}^{T}X_{j})^{-1}|z_{j}|]^{\frac{1}{2^{\gamma}}}}\right\}^{\frac{1}{2-\frac{1}{2^{\gamma}}}}
+u(\beta_{-j})=2\left({\frac{C_{1}(X_{j}^{T}X_{j})^{-1}}{2C_{2}+2[(X_{j}^{T}X_{j})^{-1}|z_{j}|]^{\frac{1}{2^{\gamma}}}}}\right)^{\frac{1}{2-\frac{1}{2^{\gamma}}}}
 $$
