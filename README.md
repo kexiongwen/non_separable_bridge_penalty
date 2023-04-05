@@ -10,7 +10,7 @@ Consider a penalized linear regression with nonseparable bridge penalty such tha
 
 
 $$
-\frac{1}{2}\|Y-X\beta\|^{2}+(2^{\gamma}p+0.5)\log\left(\sum_{j=1}^{P}|\beta_{j}|^{\frac{1}{2^{\gamma}}}+1/b\right)
+\frac{1}{2}||Y-X\beta||^{2}+(2^{\gamma}p+0.5)\log\left(\sum_{j=1}^{P}|\beta_{j}|^{\frac{1}{2^{\gamma}}}+1/b\right)
 $$
 
 where $X$ is a $N \times P$ matrix of covariates, $\beta \in \mathbb{R}^{P}$ is assumed to be a sparse vector, and $Y \in \mathbb{R}^N$ is an $N$-vector of response observations.  $b$ is the hyperparameter, which is set to $b \propto \frac{\log(P)}{P}$. $\gamma$ is set to $1$ or $2$.
