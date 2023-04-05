@@ -12,6 +12,9 @@ def CD_non_separable(Y,X,C,s=1):
     C1=(P+a/(2**s))
     iteration=1
     power=1/(2-0.5**s)
+
+    ink1=X[:,1:]@beta[1:,:]
+    ink2=np.zeros((N,1))
         
     while (np.linalg.norm(beta-beta_previous)>1e-4 and iteration<20):
 
@@ -21,12 +24,12 @@ def CD_non_separable(Y,X,C,s=1):
         for j in range(0,P):
 
             if (j!=0) & (j!=P-1):
-                Z[j]=X[:,j:j+1].T@(Y-X[:,0:j]@beta[0:j,:]-X[:,j+1:]@beta[j+1:,:])/XTX[j,j]
+                Z[j]=X[:,j:j+1].T@(Y-ink2-ink1)/XTX[j,j]
             elif j==0:
-                Z[0]=X[:,0:1].T@(Y-X[:,1:]@beta[1:,:])/XTX[j,j]
+                Z[0]=X[:,0:1].T@(Y-ink1)/XTX[0,0]
             else:
-                Z[P-1]=X[:,P-1:P].T@(Y-X[:,0:P-1]@beta[0:P-1,:])/XTX[j,j]
-
+                Z[P-1]=X[:,P-1:P].T@(Y-ink2)/XTX[P-1,P-1]
+         
             beta_old=np.abs(Z[j])
             beta_new=1000
             
@@ -46,7 +49,17 @@ def CD_non_separable(Y,X,C,s=1):
                     beta[j,:]=0 
                 else:
                     beta[j,:]=beta_new*np.sign(Z[j])
-   
+            
+            if (j!=0) & (j!=P-1):
+                ink1=ink1-X[:,j+1:j+2]@beta[j+1:j+2,:]
+                ink2=ink2+X[:,j:j+1]@beta[j:j+1,:]
+            elif j==0:
+                ink1=ink1-X[:,1:2]@beta[1:2,:]
+                ink2=X[:,0:1]@beta[0:1,:]
+            else:
+                ink1=ink2+X[:,j:j+1]@beta[j:j+1,:]-X[:,0:1]@beta[0:1,:]
+                ink2=np.zeros((N,1))
+
     sparsity=np.count_nonzero(beta!=0)
     sigma2_estimator=(Y-X@beta).T@(Y-X@beta)/(N-sparsity)
             
