@@ -41,8 +41,8 @@ def CD_non_separable(Y,X,C,s=1):
             else:
                 while (np.abs(beta_old-beta_new)>1e-4 and k<=20 and beta_new>=0):
 
-                    beta_new=np.abs(Z[j])-C1/XTX[j,j]/(beta_old+C2*beta_old**(1-0.5**s))
                     beta_old=np.copy(beta_new)
+                    beta_new=np.abs(Z[j])-C1/XTX[j,j]/(beta_old+C2*beta_old**(1-0.5**s))
                     k=k+1
 
                 if k>20 or beta_new<0:
