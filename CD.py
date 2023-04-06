@@ -29,9 +29,6 @@ def CD_non_separable(Y,X,C,s=1):
                 Z[0]=X[:,0:1].T@(Y-ink1)/XTX[0,0]
             else:
                 Z[P-1]=X[:,P-1:P].T@(Y-ink2)/XTX[P-1,P-1]
-         
-            beta_old=np.abs(Z[j])
-            beta_new=1000
             
             C2=1/b+np.sum(np.abs(beta)**(0.5**s))-np.abs(beta[j,:])**(0.5**s)
             k=1
@@ -39,6 +36,10 @@ def CD_non_separable(Y,X,C,s=1):
             if np.abs(Z[j])<2*((C1/(C2+np.abs(Z[j])**(0.5**s)))*0.5/XTX[j,j])**power:
                 beta[j,:]=0
             else:
+
+                beta_old=np.abs(Z[j])
+                beta_new=1000
+                
                 while (np.abs(beta_old-beta_new)>1e-4 and k<=20 and beta_new>=0):
 
                     beta_old=np.copy(beta_new)
