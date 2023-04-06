@@ -29,17 +29,15 @@ while (norm(beta-beta_previous)>1e-3) && (iteration<20)
                 Z(S(2))=X(:,S(2))'*(Y-ink2)/XTX(S(2),S(2));
         end
 
-        
-
         C2=1/b+sum(abs(beta).^(0.5.^s))-abs(beta(j,:)).^(0.5.^s);
-        k=1;
-
+        
         if abs(Z(j))<2*((C1/(C2+abs(Z(j)).^(0.5.^s)))*0.5/XTX(j,j)).^power
             beta(j,:)=0;
         else
             
             beta_old=abs(Z(j));
             beta_new=1000;
+            k=1;
             while abs(beta_old-beta_new)>1e-4 && (k<=20) && (beta_new>=0)
                 beta_old=beta_new;
                 beta_new=abs(Z(j))-C1/XTX(j,j)/(beta_old+C2*beta_old.^(1-0.5.^s));
