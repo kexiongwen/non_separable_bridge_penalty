@@ -12,20 +12,20 @@ BetaTrue(26)=-0.5;
 BetaTrue(31)=2.0;
 BetaTrue(46)=-1.2;
 BetaTrue(51)=-1;
-SigmaTrue=1;
+SigmaTrue=3.^0.5;
 Corr=0.5.^toeplitz((0:p-1));
 X=mvnrnd(zeros(1,p),Corr,n);
 Y=X*BetaTrue+SigmaTrue.*randn([n 1]);
 toc
 
-C=3;
-s=1;
+C=2;
+s=3;
 
 
 tic
-[beta,sparsity,sigma2]=CD_NSB(Y,X,C,s);
+[beta,~,sigma2]=CD_NSB(Y,X,C,s);
 toc
 
-L2=norm(beta-BetaTrue);
+[L2,L1,sparsity,Ham,FDR,FNDR]=metric(beta,BetaTrue);
 
 
