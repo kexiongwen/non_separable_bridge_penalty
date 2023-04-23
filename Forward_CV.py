@@ -1,6 +1,6 @@
 import numpy as np
 
-def CD_non_separable_CV(Y,X,beta_initial,t,s=1):
+def CD_non_separable_CV(Y,X,beta_initial,t,s=3):
     
     XTX=X.T@X
     N,P=np.shape(X)
@@ -72,7 +72,7 @@ def CD_non_separable_CV(Y,X,beta_initial,t,s=1):
     return result
 
 
-def Forward_CV(Y,X,v=3,k=5):
+def Forward_CV(Y,X,gamma=3,k=5):
     
     _,P=np.shape(X)
     
@@ -103,7 +103,7 @@ def Forward_CV(Y,X,v=3,k=5):
     
         for i in range(1,step+1):
 
-            beta_path[:,i:i+1],_,_=CD_non_separable_CV(Y_train,X_train,beta_initial=beta_path[:,i-1:i],t=grid[i-1],s=v)
+            beta_path[:,i:i+1],_,_=CD_non_separable_CV(Y_train,X_train,beta_initial=beta_path[:,i-1:i],t=grid[i-1],s=gamma)
             
             validation_error[j,i-1]=np.linalg.norm(Y_valid-X_valid@beta_path[:,i:i+1],2)
                  
@@ -115,7 +115,7 @@ def Forward_CV(Y,X,v=3,k=5):
     
     for j in range(0,location+1):
     
-        beta_estimator,sparsity,sigma2_estimator=CD_non_separable_CV(Y,X,beta_initial=beta_estimator,t=grid[j],s=v)
+        beta_estimator,sparsity,sigma2_estimator=CD_non_separable_CV(Y,X,beta_initial=beta_estimator,t=grid[j],s=gamma)
     
  
     result=(beta_estimator,sparsity,sigma2_estimator)
