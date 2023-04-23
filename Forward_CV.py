@@ -4,7 +4,10 @@ def CD_non_separable_CV(Y,X,beta_initial,t,s=1):
     
     XTX=X.T@X
     N,P=np.shape(X)
-    b=1/t
+    if t==0:
+        b=10000
+    else:
+        b=1/t
     beta=beta_initial
     beta_previous=np.ones((P,1))
     Z=np.ones(P)    
@@ -69,15 +72,15 @@ def CD_non_separable_CV(Y,X,beta_initial,t,s=1):
     return result
 
 
-def cross_validation(Y,X,v=3,k=5):
+def Forward_CV(Y,X,v=3,k=5):
     
     _,P=np.shape(X)
     
     data=np.concatenate((Y,X),axis=1)
     np.random.shuffle(data)
     chunks=np.split(data,k)
-    step=30
-    grid=np.linspace(0,150,step)
+    step=10
+    grid=np.linspace(0,step*k,step)
     validation_error=np.zeros((k,step))
     validation_error_sum=np.zeros(step)
     
@@ -115,5 +118,5 @@ def cross_validation(Y,X,v=3,k=5):
         beta_estimator,sparsity,sigma2_estimator=CD_non_separable_CV(Y,X,beta_initial=beta_estimator,t=grid[j],s=v)
     
  
-    result=(beta_estimator,sparsity,sigma2_estimator,grid[location])
+    result=(beta_estimator,sparsity,sigma2_estimator)
     return result    

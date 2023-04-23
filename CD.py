@@ -1,6 +1,6 @@
 import numpy as np
 
-def CD_non_separable(Y,X,C,s=1):
+def CD_non_separable(Y,X,C=2,s=3):
     
     XTX=X.T@X
     N,P=np.shape(X)
