@@ -28,3 +28,19 @@ where $\epsilon$ is some suitable small error tolerance, $T$ is the terminal num
 $$
 u(\beta_{-j})=2\left({\frac{C_{1}(X_{j}^{T}X_{j})^{-1}}{2C_{2}+2[(X_{j}^{T}X_{j})^{-1}|z_{j}|]^{\frac{1}{2^{\gamma}}}}}\right)^{\frac{1}{2-\frac{1}{2^{\gamma}}}}
 $$
+
+
+
+
+
+
+## Reference
+
+```
+@article{ke2021bayesian,
+  title={Bayesian $ L_\frac{1}{2}$ regression},
+  author={Ke, Xiongwen and Fan, Yanan},
+  journal={arXiv preprint arXiv:2108.03464},
+  year={2021}
+}
+```
